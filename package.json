@@ -1,0 +1,16 @@
+{
+  "name": "nodebb-plugin-color",
+  "version": "0.1.1",
+  "description": "NodeBB Plugin that allows users to use colors in their posts.",
+  "main": "library.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Toolito/nodebb-plugin-colors"
+  },
+  "keywords": [
+    "nodebb",
+    "colors"
+  ],
+  "license": "MIT",
+  "dependencies": { }
+}
