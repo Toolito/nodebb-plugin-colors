@@ -5,7 +5,6 @@ $('document').ready(function() {
 			text = textarea;
 		});
 		$(document).on('click','.fa-eyedropper',function(){
-			console.log('test');
 			$('.fa-eyedropper').ColorPicker({
 				onShow: function (el) {
 					$(el).fadeIn(500);
@@ -18,8 +17,6 @@ $('document').ready(function() {
 				},
 				onSubmit: function (hsb, hex, rgb, el) {
 					$(el).ColorPickerHide();
-					console.log(start);
-					console.log(end);
 					if(start === end){
 						controls.insertIntoTextarea(text, '%(#'+hex+')[Insert Text Here]');
 						controls.updateTextareaSelection(text, start + 11, end + 27);
@@ -33,8 +30,6 @@ $('document').ready(function() {
 		$(document).on('blur','textarea.write',function(){
 			start = this.selectionStart;
 			end = this.selectionEnd;
-			console.log(start);
-			console.log(end);
 		});
 	});
 });
