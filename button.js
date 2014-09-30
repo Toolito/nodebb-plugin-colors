@@ -1,12 +1,16 @@
 $('document').ready(function() {
 	require(['composer', 'composer/controls'], function(composer, controls) {
+		var text, start, end;
 		composer.addButton('fa fa-eyedropper', function(textarea, selectionStart, selectionEnd) {
+			text = textarea;
+		});
+		$(document).on('click','.fa-eyedropper',function(){
+			console.log('test');
 			$('.fa-eyedropper').ColorPicker({
 				onShow: function (el) {
 					$(el).fadeIn(500);
-					console.log(selectionEnd);
-					controls.updateTextareaSelection(textarea, selectionStart, selectionEnd);
 					return false;
+					controls.updateTextareaSelection(text, start, end);
 				},
 				onHide: function (el) {
 					$(el).fadeOut(500);
@@ -14,24 +18,23 @@ $('document').ready(function() {
 				},
 				onSubmit: function (hsb, hex, rgb, el) {
 					$(el).ColorPickerHide();
-					if(selectionStart === selectionEnd){
-						controls.insertIntoTextarea(textarea, '%(#'+hex+')[Insert Text Here]');
-						controls.updateTextareaSelection(textarea, selectionStart + 11, selectionEnd + 27);
+					console.log(start);
+					console.log(end);
+					if(start === end){
+						controls.insertIntoTextarea(text, '%(#'+hex+')[Insert Text Here]');
+						controls.updateTextareaSelection(text, start + 11, end + 27);
 					} else {
-						controls.wrapSelectionInTextareaWith(textarea, '%(#'+hex+')[',']');
-						controls.updateTextareaSelection(textarea, selectionStart + 9, selectionEnd + 1);
+						controls.wrapSelectionInTextareaWith(text, '%(#'+hex+')[',']');
+						controls.updateTextareaSelection(text, start + 11, end + 11);
 					}
 				}
-			});
-			/*console.log(selectionStart);
-			console.log(selectionEnd);
-			if(selectionStart === selectionEnd){
-				controls.insertIntoTextarea(textarea, '%(#color)[Insert Text Here]');
-				controls.updateTextareaSelection(textarea, selectionStart + 11, selectionEnd + 27);
-			} else {
-				controls.wrapSelectionInTextareaWith(textarea, '%(#color)[',']');
-				controls.updateTextareaSelection(textarea, selectionStart + 9, selectionEnd + 1);
-			}*/
+			}).trigger('click');
+		});
+		$(document).on('blur','textarea.write',function(){
+			start = this.selectionStart;
+			end = this.selectionEnd;
+			console.log(start);
+			console.log(end);
 		});
 	});
 });
