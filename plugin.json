@@ -1,14 +1,26 @@
 {
-      "id": "nodebb-plugin-color"
-    , "name": "NodeBB Text Colors Plugin"
-    , "description": "NodeBB Plugin that allows users to use colors in their posts."
-    , "url": "https://github.com/Toolito/nodebb-plugin-colors"
-    , "library": "./library.js"
-		,	"hooks": [
-			{ 
-				"hook": "filter:post.parse", 
-				"method": "parse", 
-				"callbacked": true
-			}
-		]
+	"id": "nodebb-plugin-color",
+	"name": "NodeBB Text Colors Plugin",
+	"description": "NodeBB Plugin that allows users to use colors in their posts.", 
+	"url": "https://github.com/Toolito/nodebb-plugin-colors", 
+	"library": "./library.js",
+	"staticDirs": {
+		"images": "lib/colorpicker/images"
+	},
+	"hooks": [
+		{ 
+			"hook": "filter:post.parse", 
+			"method": "parse", 
+			"callbacked": true,
+			"priority": 7
+		}
+	],
+	"less": [
+		"lib/colorpicker/css/colorpicker.less"
+	],
+	"scripts": [
+		"./button.js",
+		"lib/colorpicker/js/colorpicker.js"
+	]
+
 }
