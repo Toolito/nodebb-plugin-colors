@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-color",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "NodeBB Plugin that allows users to use colors in their posts.",
   "main": "library.js",
   "repository": {
