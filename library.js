@@ -32,7 +32,8 @@
 		//do the replace on the whole
 		data = data.replace(reg, html);
 		//replace CODE with previously stocked code content
-		data = data.replace(/__CODE__/, function(){
+		var 
+		data = data.replace(/__CODE__/g, function(){
 			return codesTag.shift();
 		});
 		return data;
