@@ -16,8 +16,16 @@
 		} else if (data.userData && data.userData.signature && data.userData.signature.match(reg) ) {
 			//signature
 			data.userData.signature =  data.userData.signature.replace(reg, html);
+		} else if (data.topics) {
+			//topics title
+			data.topics.forEach(function(current, i, arr) {
+				current.title = parser(current.title, code, reg);
+			});
+		} else if(data.topic) {
+			//topic title
+			data.topic.title = parser(data.topic.title, code, reg);
 		}
-		
+
 		callback(null, data);
 	};
 
@@ -32,7 +40,7 @@
 		//do the replace on the whole
 		data = data.replace(reg, html);
 		//replace CODE with previously stocked code content
-		var 
+		var
 		data = data.replace(/__CODE__/g, function(){
 			return codesTag.shift();
 		});
